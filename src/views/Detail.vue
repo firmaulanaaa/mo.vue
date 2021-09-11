@@ -5,51 +5,51 @@
         <img :src="movies.image" alt="posters">
       </div>
       <div class="info-detail">
-        <div class="info">
+        <div class="txt-detail">
           <p>title :</p>
           <p>{{movies.title}}</p>
         </div>
-        <div class="info">
+        <div class="txt-detail">
           <p>genres :</p>
           <p>{{movies.genres}}</p>
         </div>
-        <div class="info">
+        <div class="txt-detail">
           <p>directors :</p>
           <p>{{movies.directors}}</p>
         </div>
-        <div class="info">
+        <div class="txt-detail">
           <p>writers :</p>
           <p>{{movies.writers}}</p>
         </div>
-        <div class="info">
+        <div class="txt-detail">
           <p>year :</p>
           <p>{{movies.year}}</p>
         </div>
-        <div class="info">
+        <div class="txt-detail">
           <p>imDb Ratings :</p>
           <p>{{movies.imDbRating ? movies.imDbRating : '-'}} from {{movies.imDbRatingVotes ? movies.imDbRatingVotes : "-"}} votes</p>
         </div>
-        <div class="info">
+        <div class="txt-detail">
           <p>release date :</p>
           <p>{{movies.releaseDate}}</p>
         </div>
-        <div class="info">
+        <div class="text-detail">
           <p>runtime :</p>
           <p>{{movies.runtimeMins ? movies.runtimeMins+" mins" : "-"}}</p>
         </div>
-        <div class="info">
+        <div class="text-detail">
           <p>stars :</p>
           <p>{{movies.stars}}</p>
         </div>
-        <div class="info ">
+        <div class="text-detail">
         <p>plot :</p>
         <p>{{movies.plot}}</p>
         </div>
-        <div class="info">
+        <div class="text-detail">
           <p>languages :</p>
           <p>{{movies.languages}}</p>
         </div>
-        <div class="info">
+        <div class="text-detail">
           <p>companies :</p>
           <p>{{movies.companies}}</p>
         </div>
@@ -74,7 +74,7 @@
         async function getMovies() {
           const fetchMovies = await fetch(`https://imdb-api.com/en/API/Title/k_ui3301p6/${route.params.id}`)
           const results = await fetchMovies.json()
-          movies.value = results
+          movies.value = await results
           const fetchTrailer = await fetch(`https://imdb-api.com/en/API/YouTubeTrailer/k_ui3301p6/${route.params.id}`)
           const trailerResult = await fetchTrailer.json()
           movieTrailer.value = "https://www.youtube.com/embed/"+trailerResult.videoId
@@ -126,7 +126,7 @@
     flex-direction: column;
   }
 
-  .info {
+  .txt-detail {
     display: flex;
     width: 100%;
     font-size: 1.2rem;
@@ -137,24 +137,17 @@
     color: grey;
   }
 
-  .info p:first-child {
+  .txt-detail p:first-child {
     width: 30%;
   }
 
-  .info p:last-child {
+  .txt-detail p:last-child {
     width: 70%;
   }
 
- /* @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
-  .info {
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    background-color: rgba(255, 255, 255, 0.5);  
-  }
-}*/
 .videoWrapper {
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 */
+  padding-bottom: 56.25%;
   height: 0;
 }
 .videoWrapper iframe {

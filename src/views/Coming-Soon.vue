@@ -1,12 +1,12 @@
 <template>
   <div class="container">
-    <div class="movie"  v-for="movie in movies" :key="movie.id">
-      <div class="movie-image" :style="{ backgroundImage: `url(${movie.image})`}"></div>
-      <div class="movie-info">
-        <h2 class="title">{{ movie. title}} <span>{{movie.year}}</span></h2>
-        <p class="info-data">directed by <span>{{ movie.directors }}</span></p>
-        <p class="info-data">{{movie.genres}}</p>
-        <p class="info-data">coming up in <span>{{movie.releaseState}}</span></p>
+    <div class="card"  v-for="movie in movies" :key="movie.id">
+      <div class="card-img" :style="{ backgroundImage: `url(${movie.image})`}"></div>
+      <div class="summary">
+        <h2>{{ movie. title}} <span>{{movie.year}}</span></h2>
+        <p>directed by <span>{{ movie.directors }}</span></p>
+        <p>{{movie.genres}}</p>
+        <p>coming up in <span>{{movie.releaseState}}</span></p>
           <router-link :to="{name: 'Detail', params:{id: movie.id}}" class="fa router-button">Detail</router-link>
       </div>
     </div>
@@ -48,7 +48,7 @@
     margin: 0 70px;
   }
 
-  .movie {
+  .card {
     width: 200px;
     height: 500px;
     background: #1e1b26;
@@ -59,7 +59,7 @@
     box-shadow: 0 0 20px black;
   }
 
-  .movie-image {
+  .card-img {
     height: 55%;
     width: 100%;
     position: relative;
@@ -69,66 +69,29 @@
     -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, black),color-stop(0.35, black), color-stop(0.5, black), color-stop(0.65, black), color-stop(0.85, rgba(0, 0, 0, 0.6)), color-stop(1, transparent));
   }
 
-  .movie-info {
+  .summary {
     color: #bbb;
     font-family: "Open Sans", sans-serif;
     padding: 15px;
   }
 
-  .movie-info p {
+  .summary p {
     padding-top: 10px;
     letter-spacing: 2px;
-  }
-
-  .title {
-    font-size: 1.5rem;
-  }
-
-  .title span {
-    font-size: 1rem;
-  }
-
-  .movie-text {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-  }
-
-
-  .summary {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: justify;
-    /*margin: 5px 0;*/
-  }
-
-  .info-data {
     font-size: 0.8rem;
     color: #bbb;
   }
 
-  .info-data span {
+  .summary p span {
     font-weight: bold;
   }
 
-  .router-button {
-    width: -webkit-fill-available;
-    margin-top: 20px;
-    padding: 10px 0;
-    color: #f44336;
-    font-size: 1rem;
-    border: 1px solid #f44336;
-    border-radius: 5px;
-    background-color: transparent;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
+  .summary h2 {
+    font-size: 1.5rem;
   }
 
-  .router-button:hover {
-    color: #eee;
-    background-color: #f44336;
+  .summary h2 span {
+    font-size: 1rem;
   }
   
 

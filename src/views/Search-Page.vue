@@ -1,17 +1,13 @@
 <template>
-	<div class="card-wrapper">
-  <div class="card" v-for="movie in movies" :key="movie.title">
-      <img :src="movie.Poster" :alt="movie.Title">
-    <div class="card-info">
-      <h2>{{movie.Title}}</h2>
-      <p>Movie | action, comedy | English | 2021</p>
-      <p><span>directed by</span> Shawn Levy</p>
-      <p><span>actors</span> Ryan Reynolds Jodie Comer Taika Waititi</p>
-      <p>"A bank teller discovers that he's actually an NPC inside a brutal, open world video game."</p>
-			<router-link :to="{name: 'Detail', params:{id: movie.imdbID}}" class="card-btn">Detail</router-link>
+	<div class="container">
+    <div class="card"  v-for="movie in movies" :key="movie.imdbID">
+      <div class="card-img" :style="{ backgroundImage: `url(${movie.Poster})`}"></div>
+      <div class="summary">
+        <h2>{{ movie. Title}} <span>{{movie.Year}}</span></h2>
+        <router-link :to="{name: 'Detail', params:{id: movie.imdbID}}" class="dtl-btn">Detail</router-link>
+      </div>
     </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -40,60 +36,76 @@
 
 <style>
 
-.card-wrapper{
-  padding-top: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  background-color: #000814;
-}
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 150px 0;
+    margin: 0 70px;
+  }
 
-.card {
-  display: flex;
-  width: 700px;
-  margin-top: 15px;
-  padding: 20px;
-  border: 1px white solid;
-  border-radius: 5px;
-}
-.card img{
-  width: 130px;
-  height: 200px;
-  border-radius: 5%;
-}
+  .card {
+    position: relative;
+    width: 200px;
+    height: 350px;
+    background: #1e1b26;
+    display: flex;
+    flex-direction: column;
+    border-radius: 3px;
+    margin: 0 20px 20px 20px;
+    box-shadow: 0 0 20px black;
+  }
 
-.card .card-info {
-  color: #FFFFFF;
-	padding-left: 15px;
-}
+  .card-img {
+    height: 65%;
+    width: 100%;
+    position: relative;
+    background: rgb(30, 27, 38);
+    background-size: cover;
+    background-blend-mode: screen;
+    -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, black),color-stop(0.35, black), color-stop(0.5, black), color-stop(0.65, black), color-stop(0.85, rgba(0, 0, 0, 0.6)), color-stop(1, transparent));
+  }
 
-.card-info h2 {
-  font-family: 'Anton', sans-serif;
-  letter-spacing: 4px;
-}
+  .summary {
+    color: #bbb;
+    font-family: "Open Sans", sans-serif;
+    padding: 15px;
+  }
 
-.card-info p {
-  font-family: 'Poppins', sans-serif;
-  font-size: 14px;
-	line-height: 1;
-	padding-top: 5px;
-}
+  .summary p {
+    padding-top: 10px;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+    color: #bbb;
+  }
 
-.card-info p span {
-  font-size: 12px
-}
+  .summary p span {
+    font-weight: bold;
+  }
 
-.card-info .card-btn {
-  display: inline-block;
-	margin-top: 20px;
-	padding: 10px 0;
-	border-radius: 5px;
-	border: 1px white solid;
-	background-color: transparent;
-	color: #FFFFFF;
-	width: -webkit-fill-available;
-	cursor: pointer;
-  text-decoration: none;
-}
+  .summary h2 {
+    font-size: 1rem;
+  }
+
+  .summary h2 span {
+    font-size: 0.8rem;
+  }
+
+  .dtl-btn {
+    position: absolute;
+    display: block;
+    padding: 10px 62px;
+    bottom: 10px;
+    color: #f44336;
+    font-family: Poppins;
+    font-weight: bold;
+    font-size: 1rem;
+    border: 1px solid #f44336;
+    border-radius: 5px;
+    background-color: transparent;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+  }
 </style>

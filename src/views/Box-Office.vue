@@ -69,7 +69,7 @@
   }
 
   .title {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 
   .movie-info {
@@ -96,34 +96,5 @@
     font-size: 0.8rem;
   }
 
-
-  .summary {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: justify;
-    /*margin: 5px 0;*/
-  }
-
-
-
-  .router-button {
-    width: -webkit-fill-available;
-    margin-top: 20px;
-    padding: 10px 0;
-    color: #f44336;
-    font-size: 1rem;
-    border: 1px solid #f44336;
-    border-radius: 5px;
-    background-color: transparent;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-  }
-
-  .router-button:hover {
-    color: #eee;
-    background-color: #f44336;
-  }
 
 </style>

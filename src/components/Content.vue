@@ -17,7 +17,7 @@
 </template>
 
 <script>
-	import { onBeforeMount, ref } from 'vue'
+	import { onMounted, ref } from 'vue'
 
 	export default {
 		setup() {
@@ -28,7 +28,7 @@
           const results = await fetchMovies.json()
           movies.value = results.items
        }
-      onBeforeMount(() => getMovies())
+      onMounted(() => getMovies())
       
      	return { movies }
 		}
@@ -102,15 +102,6 @@
     margin-top: 10px;
   }
 
-
-  .summary {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: justify;
-    /*margin: 5px 0;*/
-  }
-
   .info-data {
     font-size: 0.8rem;
     color: #bbb;
@@ -120,27 +111,5 @@
     font-weight: bold;
   }
 
-  .router-button {
-    width: -webkit-fill-available;
-    margin-top: 20px;
-    padding: 10px 0;
-    color: #f44336;
-    font-size: 1rem;
-    border: 1px solid #f44336;
-    border-radius: 5px;
-    background-color: transparent;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-  }
-
-  .router-button {
-    text-decoration: none;
-  }
-
-  .router-button:hover {
-    color: #eee;
-    background-color: #f44336;
-  }
   
 </style>
