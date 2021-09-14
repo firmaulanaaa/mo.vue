@@ -1,4 +1,5 @@
 <template>
+  <Navbar/>
   <div class="detail">
     <div class="movie-detail">
       <div class="img-detail">
@@ -33,23 +34,23 @@
           <p>release date :</p>
           <p>{{movies.releaseDate}}</p>
         </div>
-        <div class="text-detail">
+        <div class="txt-detail">
           <p>runtime :</p>
           <p>{{movies.runtimeMins ? movies.runtimeMins+" mins" : "-"}}</p>
         </div>
-        <div class="text-detail">
+        <div class="txt-detail">
           <p>stars :</p>
           <p>{{movies.stars}}</p>
         </div>
-        <div class="text-detail">
+        <div class="txt-detail">
         <p>plot :</p>
         <p>{{movies.plot}}</p>
         </div>
-        <div class="text-detail">
+        <div class="txt-detail">
           <p>languages :</p>
           <p>{{movies.languages}}</p>
         </div>
-        <div class="text-detail">
+        <div class="txt-detail">
           <p>companies :</p>
           <p>{{movies.companies}}</p>
         </div>
@@ -64,21 +65,27 @@
 <script>
   import { useRoute } from 'vue-router'
   import { onMounted, ref } from 'vue'
+  import axios from 'axios'
+  import Navbar from '../components/Navbar.vue'
   export default {
+    components : { Navbar },
     setup() {
       let movies = ref([])
       let movieTrailer = ref(null);
       const route = useRoute();
 
-      onMounted(() => {
-        async function getMovies() {
-          const fetchMovies = await fetch(`https://imdb-api.com/en/API/Title/k_ui3301p6/${route.params.id}`)
-          const results = await fetchMovies.json()
-          movies.value = await results
-          const fetchTrailer = await fetch(`https://imdb-api.com/en/API/YouTubeTrailer/k_ui3301p6/${route.params.id}`)
-          const trailerResult = await fetchTrailer.json()
-          movieTrailer.value = "https://www.youtube.com/embed/"+trailerResult.videoId
+      async function getMovies() {
+        try {
+          const response = await axios.get(`https://imdb-api.com/en/API/Title/k_ui3301p6/${route.params.id}`)
+          const resTrailer = await axios.get(`https://imdb-api.com/en/API/YouTubeTrailer/k_ui3301p6/${route.params.id}`)
+          movies.value = await response.data
+          movieTrailer.value = await "https://www.youtube.com/embed/"+resTrailer.data.videoId
+        } catch (error) {
+          console.error(error);
         }
+      }
+
+      onMounted(() => {
         getMovies()
       }) 
 
@@ -105,6 +112,7 @@
 
   .img-detail {
     width: 30%;
+    height: 500px;
     margin-top: 50px;
     margin-right: 25px;
     margin-left: 50px;

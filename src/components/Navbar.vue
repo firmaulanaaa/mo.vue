@@ -23,8 +23,9 @@
 		const router = useRouter();
 		let movieInput = ref('');
 
-		function directTo(){
+		function directTo(event){
 			router.push({name: 'Search', params:{name: movieInput.value}})
+			movieInput.value = ''
 		}
 		return { movieInput, directTo }
 		}

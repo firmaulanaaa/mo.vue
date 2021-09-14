@@ -1,4 +1,5 @@
 <template>
+	<Navbar/>
 	<div class="landing-wrapper">
 		<div class="landing-page" :style="{ backgroundImage: `url(${movie.poster.link})`}">
 			<div class="text">
@@ -12,10 +13,12 @@
 </template>
 
 <script>
-	import {onMounted,reactive} from 'vue'
 	import Content from '../components/Content.vue'
+	import Navbar from '../components/Navbar.vue'
+	import {onMounted,reactive} from 'vue'
+	import axios from 'axios'
 	export default {
-		components: { Content },
+		components: { Content, Navbar },
 		setup(){
 
 			const movie = reactive({
@@ -25,23 +28,24 @@
 				poster: ''
 			})
 
-			const fetchLandingPage = async  () => {
+			async function fetchLandingPage() {
 					//get best movie
-					const getBestMovie = await fetch('https://imdb-api.com/en/API/MostPopularMovies/k_ui3301p6')
-					const bestMovie = await getBestMovie.json()
-					movie.id = await bestMovie.items[0].id
+					try {
+						const response = await axios.get('https://imdb-api.com/en/API/MostPopularMovies/k_ui3301p6')
+						movie.id = await response.data.items[0].id
 
 
-					//get movie data
-					const getMovie = await fetch(`https://imdb-api.com/en/API/Title/k_ui3301p6/${movie.id}`)
-					const getMovieData = await getMovie.json()
-					movie.title = await getMovieData.title
+						//get movie data
+						const resMovie = await axios.get(`https://imdb-api.com/en/API/Title/k_ui3301p6/${movie.id}`)
+						movie.title = await resMovie.data.title
 
 
-					//get poster
-					const getPoster = await fetch(`https://imdb-api.com/API/Posters/k_ui3301p6/${movie.id}`)
-					const posterData = await getPoster.json()
-					movie.poster = await posterData.backdrops.[0]
+						//get poster
+						const resPoster = await axios.get(`https://imdb-api.com/API/Posters/k_ui3301p6/${movie.id}`)
+						movie.poster = await resPoster.data.backdrops.[0]
+					} catch(error) {
+						console.log(error)
+					}
 
 				}
 

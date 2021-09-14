@@ -1,4 +1,5 @@
 <template>
+  <Navbar/>
   <div class="container">
     <div class="movie"  v-for="movie in movies" :key="movie.id">
       <div class="movie-image" :style="{ backgroundImage: `url(${movie.image})`}"></div>
@@ -14,18 +15,27 @@
 </template>
 
 <script>
+  import Navbar from '../components/Navbar.vue'
   import { onMounted, ref } from 'vue'
+  import axios from 'axios'
 
   export default {
+    components: {
+      Navbar,
+    },
     setup() {
       let movies = ref([])
 
-      onMounted(() => {
-        async function getMovies() {
-          const fetchMovies = await fetch('https://imdb-api.com/en/API/MostPopularMovies/k_ui3301p6')
-          const results = await fetchMovies.json()
-          movies.value = await results.items.slice(0,30)
+      async function getMovies() {
+        try {
+          const response = await axios.get('https://imdb-api.com/en/API/MostPopularMovies/k_ui3301p6')
+          movies.value = await response.data.items.slice(0,30)
+        } catch (error) {
+          console.error(error);
         }
+      }
+
+      onMounted(() => {
         getMovies()
       }) 
 
@@ -79,6 +89,11 @@
   }
 
   .title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
     font-size: 1.5rem;
   }
 

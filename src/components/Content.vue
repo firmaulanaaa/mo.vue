@@ -18,15 +18,19 @@
 
 <script>
 	import { onMounted, ref } from 'vue'
+  import axios from 'axios'
 
 	export default {
 		setup() {
 			let movies = ref([]);
 
 			const getMovies = async () => {
-          const fetchMovies = await fetch('https://imdb-api.com/en/API/InTheaters/k_ui3301p6')
-          const results = await fetchMovies.json()
-          movies.value = results.items
+        try {
+          const response = await axios.get('https://imdb-api.com/en/API/InTheaters/k_ui3301p6')
+          movies.value = await response.data.items
+        } catch (error) {
+          console.error(error);
+        }
        }
       onMounted(() => getMovies())
       

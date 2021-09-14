@@ -11,7 +11,7 @@
 </template>
 
 <script>
-  import { ref, onUpdated } from 'vue'
+  import { ref, onMounted, onUpdated, onUnmounted } from 'vue'
   import { useRoute } from 'vue-router'
 
   export default {
@@ -23,10 +23,12 @@
         const fetchMovies = await fetch(`http://www.omdbapi.com/?apikey=f952b0c9&s=${route.params.name}`)
         const movieData = await fetchMovies.json()
         movies.value = await movieData.Search
-        console.log(movies.value)
       }
 
-      onUpdated(()=> getMovie())
+      onMounted(()=> getMovie())
+      onUnmounted(()=>console.log('unmount'))
+      //try emit fetch
+      getMovie()
 
       return { movies }
     }
@@ -85,6 +87,11 @@
   }
 
   .summary h2 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
     font-size: 1rem;
   }
 
