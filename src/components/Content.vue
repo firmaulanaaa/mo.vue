@@ -3,7 +3,7 @@
 		<h1>in theaters right now</h1>
 		<div class="content-wrapper">
     <div class="movie"  v-for="movie in movies" :key="movie.id">
-      <div class="movie-image" :style="{ backgroundImage: `url(${movie.image})`}"></div>
+      <div class="movie-image" :style="{ backgroundImage: `url(http://img.omdbapi.com/?apikey=f952b0c9&i=${movie.id})`}"></div>
       <div class="movie-info">
         <h2 class="title">{{ movie. title}} <span>{{movie.year}}</span></h2>
         <p class="info-data">directed by <span>{{ movie.directors }}</span></p>
@@ -39,25 +39,24 @@
 	}
 </script>
 
-<style>
+<style scoped>
 	.content {
+    max-width: 720px;
 		display: flex;
 		flex-direction: column;
-		margin-top: 50px;
+    margin-top: 50px;
 	}
 
 	.content h1 {
 		color: white;
 		margin-left: 50px;
+    font-family: Poppins;
 	}
 
   .content-wrapper {
-    position: relative;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: center;
-    margin: 10px 70px;
   }
 
   .movie {
@@ -94,6 +93,11 @@
 
   .title {
     font-size: 1.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
   }
 
   .title span {

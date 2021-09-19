@@ -9,7 +9,7 @@
 		</ul>
 		<div class="search-btn">
 			<input type="text" placeholder="movie name" v-model="movieInput">
-			<button class="btn" @click="directTo">search</button>
+			<button class="btn" @click="search">search</button>
 		</div>
 	</nav>
 </template>
@@ -19,21 +19,26 @@
 	import { useRouter } from 'vue-router'
 	
 	export default {
-		setup(){
+		setup(props,{emit}){
 		const router = useRouter();
 		let movieInput = ref('');
 
-		function directTo(event){
-			router.push({name: 'Search', params:{name: movieInput.value}})
-			movieInput.value = ''
+		function refreshItem() {
+		  emit("load-item", movieInput.value)
+		  router.push({name: 'Search', params:{name: movieInput.value}})
 		}
-		return { movieInput, directTo }
+
+		function search(){
+			refreshItem()
+		}
+		return { movieInput, search }
 		}
 	}
 </script>
 
-<style>
+<style scoped>
 	nav {
+		font-family: "Open Sans",sans-serif;
 		width: 100%;
 		height: 70px;
 		z-index: 1;

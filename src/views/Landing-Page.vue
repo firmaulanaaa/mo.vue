@@ -8,8 +8,8 @@
 				<router-link class="text-btn" :to="{name: 'Detail', params:{id: movie.id}}">detail</router-link>
 			</div>
 		</div>
+		<Content></Content>
 	</div>
-	<Content></Content>
 </template>
 
 <script>
@@ -58,9 +58,12 @@
 	}
 </script>
 
-<style>
+<style scoped>
 	.landing-wrapper {
-		margin: 0;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 	}
 
 	.landing-page {
@@ -91,6 +94,7 @@
 	}
 
 	.text h2 {
+		font-family: "Open Sans",sans-serif;
     font-size: 64px;
     color: white;
 	}
@@ -103,13 +107,20 @@
 	}
 
 	.text .text-btn {
+		font-family: Poppins;
+		font-weight: bold;
 		display: inline-block;
 		padding: 10px 40px;
     margin-top: 10px;
-		border: 2px solid white;
+		border: 2px solid #f44336;
 		border-radius: 5px;
-    color: white;
+    color: #f44336;
     background-color: transparent;
     text-decoration: none;
 	}
+
+	.text-btn:hover {
+    color: #eee;
+    background-color: #f44336;
+  }
 </style>

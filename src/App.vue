@@ -1,8 +1,13 @@
 <template>
   <router-view/>
+  <Footer />
 </template>
 
 <script>
+  import Footer from './components/Footer.vue'
+  export default {
+    components: { Footer }
+  }
 </script>
 
 <style>
@@ -11,7 +16,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: "Open Sans",sans-serif;
+    /*font-family: "Open Sans",sans-serif;*/
   }
 
   body {

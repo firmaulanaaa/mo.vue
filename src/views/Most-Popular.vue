@@ -2,7 +2,7 @@
   <Navbar/>
   <div class="container">
     <div class="movie"  v-for="movie in movies" :key="movie.id">
-      <div class="movie-image" :style="{ backgroundImage: `url(${movie.image})`}"></div>
+      <div class="movie-image" :style="{ backgroundImage: `url(http://img.omdbapi.com/?apikey=f952b0c9&i=${movie.id})`}"></div>
       <div class="movie-info">
         <h2 class="title">{{ movie. title}}</h2>
         <p class="year">{{ movie.year }}</p>
@@ -47,7 +47,7 @@
 
 </script>
 
-<style>
+<style scoped>
   .container {
     position: relative;
     display: flex;

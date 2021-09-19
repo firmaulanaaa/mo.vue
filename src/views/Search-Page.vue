@@ -1,4 +1,5 @@
 <template>
+  <Navbar @load-item="getMovie"></Navbar>
 	<div class="container">
     <div class="card"  v-for="movie in movies" :key="movie.imdbID">
       <div class="card-img" :style="{ backgroundImage: `url(${movie.Poster})`}"></div>
@@ -11,32 +12,33 @@
 </template>
 
 <script>
-  import { ref, onMounted, onUpdated, onUnmounted } from 'vue'
+  import Navbar from '../components/Navbar.vue'
+  import { ref, onMounted } from 'vue'
   import { useRoute } from 'vue-router'
+  import axios from 'axios'
 
   export default {
+    components: { Navbar },
     setup() {
       const route = useRoute();
       let movies = ref({});
 
-      async function getMovie() {
-        const fetchMovies = await fetch(`http://www.omdbapi.com/?apikey=f952b0c9&s=${route.params.name}`)
-        const movieData = await fetchMovies.json()
-        movies.value = await movieData.Search
+      const getMovie = async (val) => {
+        if(val==undefined) val = route.params.name
+        const response = await axios.get(`http://www.omdbapi.com/?apikey=f952b0c9&s=${val}`)
+        movies.value = await response.data.Search
+        
       }
 
       onMounted(()=> getMovie())
-      onUnmounted(()=>console.log('unmount'))
-      //try emit fetch
-      getMovie()
 
-      return { movies }
+      return { movies, getMovie }
     }
   }
 </script>
 
 
-<style>
+<style scoped>
 
 .container {
     position: relative;

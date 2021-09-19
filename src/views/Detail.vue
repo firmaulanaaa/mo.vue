@@ -2,9 +2,7 @@
   <Navbar/>
   <div class="detail">
     <div class="movie-detail">
-      <div class="img-detail">
         <img :src="movies.image" alt="posters">
-      </div>
       <div class="info-detail">
         <div class="txt-detail">
           <p>title :</p>
@@ -98,7 +96,7 @@
 </script>
 
 
-<style>
+<style scoped>
   .detail {
     background-color: rgba(0, 0, 0, .9);
     margin: 0 50px
@@ -110,26 +108,14 @@
     padding-top: 80px;
   }
 
-  .img-detail {
-    width: 30%;
-    height: 500px;
-    margin-top: 50px;
-    margin-right: 25px;
-    margin-left: 50px;
-    margin-bottom: 50px;
-  }
 
-  .img-detail img {
-    height: 100%;
-    width: 100%;
+  .movie-detail img {
+    height: 500px;
+    margin: 0 50px;
   }
 
   .info-detail {
-    width: 60%;
-    margin-top: 50px;
     margin-right: 50px;
-    margin-left: 25px;
-    margin-bottom: 50px;
     display: flex;
     flex-direction: column;
   }
