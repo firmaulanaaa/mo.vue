@@ -1,15 +1,17 @@
 <template>
   <Navbar/>
   <div class="container">
-    <div class="movie"  v-for="movie in movies" :key="movie.id">
-      <div class="movie-image" :style="{ backgroundImage: `url(http://img.omdbapi.com/?apikey=f952b0c9&i=${movie.id})`}"></div>
-      <div class="movie-info">
-        <h2 class="title">{{ movie.title}}</h2>
-        <p><span>rank :</span> {{movie.rank}}</p>
-        <p><span>gross :</span> {{movie.gross}}</p>
-        <p><span>weekend :</span> {{movie.weekend}}</p>
-        <p><span>weeks :</span> {{movie.weeks}}</p>
-        <router-link :to="{name: 'Detail', params:{id: movie.id}}" class="fa router-button">Detail</router-link>
+    <div class="wrapper">
+      <div class="movie"  v-for="movie in movies" :key="movie.id">
+        <div class="movie-image" :style="{ backgroundImage: `url(http://img.omdbapi.com/?apikey=f952b0c9&i=${movie.id})`}"></div>
+        <div class="movie-info">
+          <h2 class="title">{{ movie.title}}</h2>
+          <p><span>rank :</span> {{movie.rank}}</p>
+          <p><span>gross :</span> {{movie.gross}}</p>
+          <p><span>weekend :</span> {{movie.weekend}}</p>
+          <p><span>weeks :</span> {{movie.weeks}}</p>
+          <router-link :to="{name: 'Detail', params:{id: movie.id}}" class="fa router-button">Detail</router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -50,10 +52,16 @@
   .container {
     position: relative;
     display: flex;
+    justify-content: center;
+    padding: 150px 0;
+  }
+
+  .wrapper {
+    max-width: 700px;
+    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    padding: 150px 0;
-    margin: 0 70px;
+    justify-content: space-between;
   }
 
   .movie {
@@ -63,8 +71,8 @@
     display: flex;
     flex-direction: column;
     border-radius: 3px;
-    margin: 0 20px 20px 20px;
     box-shadow: 0 0 20px black;
+    margin-top: 20px;
   }
 
   .movie-image {

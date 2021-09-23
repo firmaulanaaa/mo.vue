@@ -1,11 +1,13 @@
 <template>
   <Navbar @load-item="getMovie"></Navbar>
 	<div class="container">
-    <div class="card"  v-for="movie in movies" :key="movie.imdbID">
-      <div class="card-img" :style="{ backgroundImage: `url(${movie.Poster})`}"></div>
-      <div class="summary">
-        <h2>{{ movie. Title}} <span>{{movie.Year}}</span></h2>
-        <router-link :to="{name: 'Detail', params:{id: movie.imdbID}}" class="dtl-btn">Detail</router-link>
+    <div class="wrapper">
+      <div class="card"  v-for="movie in movies" :key="movie.imdbID">
+        <div class="card-img" :style="{ backgroundImage: `url(${movie.Poster})`}"></div>
+        <div class="summary">
+          <h2>{{ movie. Title}} <span>{{movie.Year}}</span></h2>
+          <router-link :to="{name: 'Detail', params:{id: movie.imdbID}}" class="dtl-btn">Detail</router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -43,10 +45,16 @@
 .container {
     position: relative;
     display: flex;
+    justify-content: center;
+    padding: 150px 0;
+  }
+
+  .wrapper {
+    max-width: 700px;
+    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    padding: 150px 0;
-    margin: 0 70px;
+    justify-content: space-between;
   }
 
   .card {
@@ -57,8 +65,8 @@
     display: flex;
     flex-direction: column;
     border-radius: 3px;
-    margin: 0 20px 20px 20px;
     box-shadow: 0 0 20px black;
+    margin-top: 20px;
   }
 
   .card-img {

@@ -20,8 +20,9 @@
   }
 
   body {
-    background-color: #212529; 
+    background-color: #212529;
   }
+
   .router-button {
     width: -webkit-fill-available;
     margin-top: 20px;

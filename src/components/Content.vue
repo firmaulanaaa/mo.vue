@@ -1,5 +1,5 @@
 <template>
-	<div class="content">
+	<div class="container">
 		<h1>in theaters right now</h1>
 		<div class="content-wrapper">
     <div class="movie"  v-for="movie in movies" :key="movie.id">
@@ -40,16 +40,15 @@
 </script>
 
 <style scoped>
-	.content {
-    max-width: 720px;
+	.container {
+    max-width: 700px;
 		display: flex;
 		flex-direction: column;
     margin-top: 50px;
 	}
 
-	.content h1 {
+	.container h1 {
 		color: white;
-		margin-left: 50px;
     font-family: Poppins;
 	}
 
@@ -57,6 +56,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: space-between;
   }
 
   .movie {
@@ -66,7 +66,7 @@
     display: flex;
     flex-direction: column;
     border-radius: 3px;
-    margin: 0 20px 20px 20px;
+    margin-top: 20px;
     box-shadow: 0 0 20px black;
   }
 

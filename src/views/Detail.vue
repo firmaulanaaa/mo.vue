@@ -2,7 +2,7 @@
   <Navbar/>
   <div class="detail">
     <div class="movie-detail">
-        <img :src="movies.image" alt="posters">
+      <img :src="movies.image" alt="posters">
       <div class="info-detail">
         <div class="txt-detail">
           <p>title :</p>
@@ -124,6 +124,8 @@
     display: flex;
     width: 100%;
     font-size: 1.2rem;
+    font-family: Poppins;
+    font-weight: 600;
     margin: auto;
     padding-top: 10px;
     padding-bottom: 5px;

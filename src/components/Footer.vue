@@ -32,6 +32,7 @@
 		height: 250px;
 		background: black;
 		color: white;
+		margin-top: 50px;
 	}
 
 	.footer-top {
@@ -45,10 +46,6 @@
 	.logo {
 		font-size: 2rem;
 		font-family: "Open Sans",sans-serif;
-	}
-
-	.logo, .contact {
-		width: 30%;
 	}
 
 	.about {
@@ -79,5 +76,6 @@
 
 	.footer-bot {
 		padding: 10px 0;
+		font-family: "Open Sans",sans-serif;
 	}
 </style>

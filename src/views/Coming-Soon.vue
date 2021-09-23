@@ -1,14 +1,16 @@
 <template>
   <Navbar/>
   <div class="container">
-    <div class="card"  v-for="movie in movies" :key="movie.id">
-      <div class="card-img" :style="{ backgroundImage: `url(http://img.omdbapi.com/?apikey=f952b0c9&i=${movie.id})`}"></div>
-      <div class="summary">
-        <h2>{{ movie. title}} <span>{{movie.year}}</span></h2>
-        <p>directed by <span>{{ movie.directors }}</span></p>
-        <p>{{movie.genres}}</p>
-        <p>coming up in <span>{{movie.releaseState}}</span></p>
-          <router-link :to="{name: 'Detail', params:{id: movie.id}}" class="fa router-button">Detail</router-link>
+    <div class="wrapper">
+      <div class="card"  v-for="movie in movies" :key="movie.id">
+        <div class="card-img" :style="{ backgroundImage: `url(http://img.omdbapi.com/?apikey=f952b0c9&i=${movie.id})`}"></div>
+        <div class="summary">
+          <h2>{{ movie. title}} <span>{{movie.year}}</span></h2>
+          <p>directed by <span>{{ movie.directors }}</span></p>
+          <p>{{movie.genres}}</p>
+          <p>coming up in <span>{{movie.releaseState}}</span></p>
+            <router-link :to="{name: 'Detail', params:{id: movie.id}}" class="fa router-button">Detail</router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -52,10 +54,16 @@
   .container {
     position: relative;
     display: flex;
+    justify-content: center;
+    padding: 150px 0;
+  }
+
+  .wrapper {
+    max-width: 700px;
+    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    padding: 150px 0;
-    margin: 0 70px;
+    justify-content: space-between;
   }
 
   .card {
@@ -65,8 +73,8 @@
     display: flex;
     flex-direction: column;
     border-radius: 3px;
-    margin: 0 20px 20px 20px;
     box-shadow: 0 0 20px black;
+    margin-top: 20px;
   }
 
   .card-img {
